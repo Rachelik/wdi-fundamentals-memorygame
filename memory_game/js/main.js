@@ -24,7 +24,7 @@ let cards = [
 ];
 
 let cardsInPlay = [];
-let score = 0;
+let score = null;
 let scorePoint = document.getElementById('score');
 
 function checkForMatch() {
@@ -55,10 +55,9 @@ function flipCard() {
 function createBoard() {
 	for (let i=0; i<cards.length; i++) {
 		let cardElement = document.createElement('img');
-		let cardElementId = document.getElementsByTagName('img')[i];
-		cardElementId.setAttribute('src', 'images/back.png');
-		cardElementId.setAttribute('data-id', i);
-		cardElementId.addEventListener('click', flipCard);
+		cardElement.setAttribute('src', 'images/back.png');
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
 		document.getElementById('game-board').appendChild(cardElement);
 	}
 }
@@ -68,16 +67,19 @@ function initializeVar() {
 	i = 0;
 }
 
-function initializeScore() {
+function initializeBoard() {
 	score = 0;
 	scorePoint.innerHTML = score;
+	for (let i=0; i<=cards.length; i++) {
+		let images = document.getElementsByTagName('img')[i];
+		images.setAttribute('src', 'images/back.png');
+	}
 }
 
 function resetGame() {
 	resetElement = document.getElementById('resetGame');
-	resetElement.addEventListener('click', createBoard);
 	resetElement.addEventListener('click', initializeVar);
-	resetElement.addEventListener('click', initializeScore);
+	resetElement.addEventListener('click', initializeBoard);
 }
 
 createBoard();
