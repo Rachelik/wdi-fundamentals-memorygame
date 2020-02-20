@@ -59,8 +59,6 @@ function createBoard() {
 
 createBoard();
 
-function resetCard() {
 
-}
 
 
