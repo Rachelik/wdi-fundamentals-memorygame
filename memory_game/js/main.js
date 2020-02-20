@@ -46,7 +46,6 @@ function flipCard() {
 }
 }
 
-
 function createBoard() {
 	for (let i=0; i<cards.length; i++) {
 		let cardElement = document.createElement('img');
@@ -59,5 +58,9 @@ function createBoard() {
 }
 
 createBoard();
+
+function resetCard() {
+
+}
 
 
