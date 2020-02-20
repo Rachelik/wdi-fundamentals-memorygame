@@ -23,19 +23,24 @@ let cards = [
 }
 ];
 
-
 let cardsInPlay = [];
+let score = 0;
+let scorePoint = document.getElementById('score');
 
 function checkForMatch() {
 	if (cardsInPlay[0] === cardsInPlay[1]) {
 		alert("You found a match!");
+		score += 2;
+		scorePoint.innerHTML = score;
 	} else {
 		alert("Sorry, try again");
+		score -= 1;
+		scorePoint.innerHTML = score;
 	}
 }
 
 function flipCard() {
-	cardId = this.getAttribute('data-id')
+	cardId = this.getAttribute('data-id');
 	console.log("User flipped: " + cards[cardId].rank);
 	cardsInPlay.push(cards[cardId].rank);
 	console.log(cards[cardId].cardImage);
@@ -43,7 +48,8 @@ function flipCard() {
 	this.setAttribute('src', cards[cardId].cardImage);
 	if (cardsInPlay.length === 2) {
 		checkForMatch();
-}
+		initializeVar();
+	}
 }
 
 function createBoard() {
@@ -57,8 +63,24 @@ function createBoard() {
 	}
 }
 
+function initializeVar() {
+	cardsInPlay = [];
+	i = 0;
+}
+
+function initializeScore() {
+	score = 0;
+	scorePoint.innerHTML = score;
+}
+
+function resetGame() {
+	resetElement = document.getElementById('resetGame');
+	resetElement.addEventListener('click', createBoard);
+	resetElement.addEventListener('click', initializeVar);
+	resetElement.addEventListener('click', initializeScore);
+}
+
 createBoard();
-
-
+resetGame();
 
 
